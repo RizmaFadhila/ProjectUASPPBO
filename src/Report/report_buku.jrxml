@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3e553765-6e48-46d2-a2f0-78fb5217923f">
+	<property name="ireport.zoom" value="1.3310000000000006"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT * FROM buku]]>
+	</queryString>
+	<field name="id" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="judul" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="genre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="penulis" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="harga" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="stok" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="110" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="a4ca99c9-b5b3-47bf-978d-3eecaf1fe56e" x="155" y="0" width="268" height="58"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data Buku Toko Buku SARI ANGGREK]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a4ca99c9-b5b3-47bf-978d-3eecaf1fe56e" x="35" y="58" width="483" height="26"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="16" isBold="false"/>
+				</textElement>
+				<text><![CDATA[JL JENDRAL SUDIRMAN BUKIT TINGGI, SUMATRA BARAT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a4ca99c9-b5b3-47bf-978d-3eecaf1fe56e" x="96" y="84" width="368" height="26"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="16" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Telp.(0752)223 37]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="62" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="16924f08-3ec2-47c8-b9bb-b4ee1fb966fe" x="0" y="41" width="96" height="20"/>
+				<textElement/>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="423ee3e8-be81-4750-9fa7-42253d9e4d39" x="96" y="41" width="90" height="20"/>
+				<textElement/>
+				<text><![CDATA[Judul]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b8e021c2-656b-4ea3-ae09-57551e4531c4" x="186" y="41" width="95" height="20"/>
+				<textElement/>
+				<text><![CDATA[Genre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f6fbe5fc-82a0-408c-a995-1565a73cbfbc" x="281" y="41" width="89" height="20"/>
+				<textElement/>
+				<text><![CDATA[Penulis]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6c0d73ba-0a89-4e30-b493-2f629b4d61ea" x="370" y="41" width="85" height="20"/>
+				<textElement/>
+				<text><![CDATA[Harga]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="0b7776f2-5d9a-47f5-b276-cb5da1ef0daa" x="455" y="41" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Stok]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement uuid="05ed8678-5c82-48b3-8b79-35a7432f0c0e" x="0" y="0" width="96" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="9e563328-5953-49ab-bcaa-63980fb7c3eb" x="96" y="0" width="90" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{judul}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="5e3171e3-9d32-4ff1-86d2-a30cbbf5e107" x="186" y="0" width="95" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{genre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="d44de31b-864e-48b3-8c00-90cdbad220c2" x="281" y="0" width="89" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{penulis}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="fb459e4c-d6a2-422e-8600-eb7857974239" x="370" y="0" width="85" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{harga}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="9e12d56d-809a-4d10-874c-beef82f88aad" x="455" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{stok}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="122" splitType="Stretch"/>
+	</summary>
+</jasperReport>

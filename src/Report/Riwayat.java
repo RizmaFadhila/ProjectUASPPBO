@@ -1,0 +1,329 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Report;
+
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import koneksi.koneksi;
+import static koneksi.koneksi.configDB;
+
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
+
+/**
+ *
+ * @author LEGION5
+ */
+public class Riwayat extends javax.swing.JFrame {
+    DefaultTableModel table = new DefaultTableModel();
+    /**
+     * Creates new form Riwayat
+     */
+    public Riwayat() {
+        initComponents();
+        koneksi conn = new koneksi();
+ 
+        
+        tb_riwayat.setModel(table);
+        table.addColumn("Tanggal Transaksi");
+        table.addColumn("ID Transaksi");
+        table.addColumn("Kode Barang");
+        table.addColumn("Nama Barang");
+        table.addColumn("Harga");
+        table.addColumn("Jumlah");
+        table.addColumn("Total Harga");
+        table.addColumn("Nama");
+        
+        tampilData();
+    }
+private void tampilData(){
+        //untuk mengahapus baris setelah input
+        int row = tb_riwayat.getRowCount();
+        for(int a = 0 ; a < row ; a++){
+            table.removeRow(0);
+        }
+        
+        String query = "SELECT * FROM `transaksi` ";
+        
+        try{
+            Connection connect = koneksi.configDB();//memanggil koneksi
+            Statement sttmnt = connect.createStatement();//membuat statement
+            ResultSet rslt = sttmnt.executeQuery(query);//menjalanakn query
+            
+            while (rslt.next()){
+                //menampung data sementara
+                   
+                    String tanggal = rslt.getString("tgl_transaksi");
+                    String tran = rslt.getString("id_transaksi");
+                    String id = rslt.getString("id");
+                    String judul = rslt.getString("judul");
+                    String harga = rslt.getString("harga");
+                    String jumlah = rslt.getString("jumlah_barang");
+                    String total = rslt.getString("total_harga");
+                    String nama = rslt.getString("nama");
+                    
+                //masukan semua data kedalam array
+                String[] data = {tanggal,tran,id,judul,harga,jumlah,total,nama};
+                //menambahakan baris sesuai dengan data yang tersimpan diarray
+                table.addRow(data);
+            }
+                //mengeset nilai yang ditampung agar muncul di table
+                tb_riwayat.setModel(table);
+            
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }
+private void cari(){
+        int row = tb_riwayat.getRowCount();
+        for(int a = 0 ; a < row ; a++){
+            table.removeRow(0);
+        }
+        
+        String cari = src.getText();
+        
+        String query = "SELECT * FROM `transaksi` WHERE "
+                + "`id`  LIKE '%"+cari+"%' OR "
+                + "`tgl_transaksi` LIKE '%"+cari+"%' OR"
+                + "`id_transaksi` LIKE '%"+cari+"%' OR"
+                + "`judul` LIKE '%"+cari+"%' OR "
+                + "`nama` LIKE '%"+cari+"%' ";
+                
+       try{
+            Connection connect = koneksi.configDB();//memanggil koneksi
+           Statement sttmnt = connect.createStatement();//membuat statement
+           ResultSet rslt = sttmnt.executeQuery(query);//menjalanakn query
+           
+           while (rslt.next()){
+                //menampung data sementara
+                   
+                    String tanggal = rslt.getString("tgl_transaksi");
+                    String tran = rslt.getString("id_transaksi");
+                    String id = rslt.getString("id");
+                    String judul = rslt.getString("judul");
+                    String harga = rslt.getString("harga");
+                    String jumlah = rslt.getString("jumlah_barang");
+                    String total = rslt.getString("total_harga");
+                    String nama = rslt.getString("nama");
+                    
+                //masukan semua data kedalam array
+                String[] data = {tanggal,tran,id,judul,harga,jumlah,total,nama};
+                //menambahakan baris sesuai dengan data yang tersimpan diarray
+                table.addRow(data);
+                
+            }
+                //mengeset nilai yang ditampung agar muncul di table
+                tb_riwayat.setModel(table);
+    }catch(Exception e){
+           System.out.println(e);
+    }
+    }
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jTextField1 = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tb_riwayat = new javax.swing.JTable();
+        src = new javax.swing.JButton();
+        back = new javax.swing.JButton();
+        print = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel1.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel2.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel2.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, 600, 40));
+
+        tb_riwayat.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tb_riwayat);
+
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(102, 90, 700, 220));
+
+        src.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gambar/src.png"))); // NOI18N
+        src.setText("FIND");
+        src.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                srcActionPerformed(evt);
+            }
+        });
+        jPanel2.add(src, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 80, 40));
+
+        back.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gambar/bs.png"))); // NOI18N
+        back.setText("BACK");
+        back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backActionPerformed(evt);
+            }
+        });
+        jPanel2.add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 430, 100, 40));
+
+        print.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gambar/p1.png"))); // NOI18N
+        print.setText("PRINT");
+        print.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                printActionPerformed(evt);
+            }
+        });
+        jPanel2.add(print, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 430, 110, 40));
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 890, 500));
+
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 2, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("TOKO BUKU SARI ANGGREK");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 40, 500, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gambar/B1 (2).png"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 0, -1, 110));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gambar/i4.png"))); // NOI18N
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 0, 110, 110));
+
+        jLabel12.setFont(new java.awt.Font("Times New Roman", 2, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel12.setText("Sari Anggrek Jl. Jendral Sudirman Bukittinggi, Sumatra Barat");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 70, 455, -1));
+
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("RIWAYAT TRANSAKSI");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, 500, -1));
+
+        jLabel13.setFont(new java.awt.Font("Times New Roman", 2, 14)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel13.setText("Telp.(0752)223 37 ");
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 90, 354, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 890, 610));
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+        // TODO add your handling code here:
+        new tokobuku.menu().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_backActionPerformed
+
+    private void srcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_srcActionPerformed
+        // TODO add your handling code here:
+        cari();
+    }//GEN-LAST:event_srcActionPerformed
+
+    private void printActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printActionPerformed
+        // TODO add your handling code here:
+        try{
+            InputStream is = Riwayat.class.getResourceAsStream("report_transaksi.jasper");
+            JasperPrint jsPrint = JasperFillManager.fillReport(is, null, koneksi.configDB());
+            JasperViewer.viewReport(jsPrint, false);
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Gagal mencetak laporan karena: "+
+                    e.getMessage(),"cetak laporan",JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_printActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+        cari();
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Riwayat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Riwayat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Riwayat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Riwayat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Riwayat().setVisible(true);
+            }
+        });
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton back;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton print;
+    private javax.swing.JButton src;
+    private javax.swing.JTable tb_riwayat;
+    // End of variables declaration//GEN-END:variables
+}
